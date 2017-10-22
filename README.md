@@ -28,9 +28,8 @@ The main component exported by `react-ms` is the `<Switch>` component.
 
 ### Examples
 
-- Toggle based on state
-- Toggle based on dynamic response
-- Toggle based on props
+- [Toggle based on state](https://codesandbox.io/embed/j312oq1ww3)
+- [Toggle based on dynamic response](https://codesandbox.io/embed/ll58w8zm)
 - Rendering all matches versus rendering first match
 
 ### Inspiration
