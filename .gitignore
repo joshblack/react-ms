@@ -1,5 +1,6 @@
-# Ignore generated dependency folders
+# Ignore generated folders
 node_modules
+lib
 
 # Logs
 *.log

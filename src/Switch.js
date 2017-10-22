@@ -6,46 +6,43 @@ import { shallowMatch } from './matchers';
 export default class Switch extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    // children(props, propName, componentName) {
-      // const prop = props[propName];
-
-      // Children.forEach(props[propName], child => {
-        // if (child.type !== Match) {
-          // throw new Error(
-            // `Invalid prop \`children\` of type \`${child.type}\` supplied ` +
-              // `to \`${componentName}\`, expected each child to be a ` +
-              // `\`Match\` component.`
-          // );
-        // }
-      // });
-    // },
-    match: PropTypes.object.isRequired,
     isMatch: PropTypes.func,
+    match: PropTypes.object.isRequired,
     only: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
-    only: false,
     isMatch: shallowMatch,
-  }
+    only: false,
+  };
 
   render() {
     const { children, match, only, isMatch } = this.props;
-    const matched = Children.toArray(children)
-      .filter(child => {
-        if (child.type === Match) {
-          return isMatch(match, child.props)
-        }
-        return true;
-      });
-
-    if (only) {
-      if (matched.length === 0) {
-        return null;
+    const matched = Children.toArray(children).filter(child => {
+      if (child.type === Match) {
+        return isMatch(match, child.props);
       }
-      return Children.only(matched[0]);
+      return true;
+    });
+
+    // If we don't have to worry about rendering the first match, just render
+    // the entire matched array.
+    if (!only) {
+      return matched;
     }
 
-    return matched;
+    // Otherwise, we need to filter out every instance of Match besides the
+    // first one, and then render the array of children.
+    let found = false;
+    return matched.filter(child => {
+      if (child.type === Match) {
+        if (found) {
+          return false;
+        }
+        found = true;
+        return true;
+      }
+      return true;
+    });
   }
 }

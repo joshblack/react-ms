@@ -4,16 +4,16 @@ import { mount } from 'enzyme';
 describe('Switch component', () => {
   let Switch;
   let Match;
+  let matchers;
 
   beforeEach(() => {
     Switch = require('../Switch').default;
     Match = require('../Match').default;
+    matchers = require('../matchers');
   });
 
   it('should render no items if there are no matches', () => {
-    let wrapper = mount(
-      <Switch match={{}} />
-    );
+    let wrapper = mount(<Switch match={{}} />);
 
     expect(wrapper.children().length).toBe(0);
 
@@ -96,9 +96,7 @@ describe('Switch component', () => {
     ];
     const wrapper = mount(
       <Switch match={match} isMatch={isMatch}>
-        {children.map(props => (
-          <Match key={props.child} {...props} />
-        ))}
+        {children.map(props => <Match key={props.child} {...props} />)}
       </Switch>
     );
 
@@ -106,10 +104,7 @@ describe('Switch component', () => {
     expect(isMatch).toHaveBeenCalledTimes(3);
 
     children.forEach(props => {
-      expect(isMatch).toHaveBeenCalledWith(
-        match,
-        props
-      );
+      expect(isMatch).toHaveBeenCalledWith(match, props);
     });
   });
 
@@ -131,5 +126,28 @@ describe('Switch component', () => {
     expect(wrapper.find('h3').length).toBe(1);
     expect(wrapper.find('h4').length).toBe(1);
     expect(wrapper.find('h5').length).toBe(2);
+  });
+
+  it('should support nested matches with a custom matcher', () => {
+    const match = {
+      foo: {
+        bar: 'baz',
+      },
+    };
+    let wrapper = mount(
+      <Switch match={match} only={true}>
+        <Match foo={{ bar: 'baz' }} render={() => <div />} />
+      </Switch>
+    );
+
+    expect(wrapper.find('div').length).toBe(0);
+
+    wrapper = mount(
+      <Switch match={match} isMatch={matchers.deepMatch} only={true}>
+        <Match foo={{ bar: 'baz' }} render={() => <div />} />
+      </Switch>
+    );
+
+    expect(wrapper.find('div').length).toBe(1);
   });
 });

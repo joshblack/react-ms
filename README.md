@@ -41,17 +41,17 @@ export default class PingPong extends React.Component {
         <Match
           action="ping"
           render={() => (
-            <div onClick={this.handleOnClick}>
+            <button onClick={this.handleOnClick}>
               Ping
-            </div>
+            </button>
           )}
         />
         <Match
           action="pong"
           render={() => (
-            <div onClick={this.handleOnClick}>
+            <button onClick={this.handleOnClick}>
               Pong
-            </div>
+            </button>
           )}
         />
       </Switch>
