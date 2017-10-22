@@ -1,8 +1,15 @@
 {
-  "name": "react-sm",
+  "name": "react-ms",
+  "description": "Generic Switch and Match components to assist you in all your conditional rendering needs.",
   "version": "0.1.0",
   "main": "lib/index.js",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "conditional",
+    "rendering",
+    "components"
+  ],
   "scripts": {
     "build": "babel src -d lib --ignore __tests__",
     "commit": "giz cz",
