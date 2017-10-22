@@ -1,6 +1,7 @@
 # Ignore generated folders
 node_modules
 lib
+umd
 
 # Logs
 *.log
