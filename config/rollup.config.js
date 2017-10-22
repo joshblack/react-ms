@@ -13,10 +13,10 @@ const babelConfig = {
 };
 
 export default {
-  name: 'react-sm',
+  name: 'react-ms',
   input: path.resolve(__dirname, '../src/index.js'),
   output: {
-    file: path.resolve(__dirname, '../umd/react-sm.js'),
+    file: path.resolve(__dirname, '../umd/react-ms.js'),
     format: 'umd',
   },
   external: ['react', 'prop-types'],
@@ -32,14 +32,12 @@ export default {
     }),
     babel(babelConfig),
     commonjs({
-      // include: path.resolve(__dirname, '../node_modules'),
       namedExports: {
         'node_modules/react/index.js': [
           'Children',
           'Component',
           'createElement',
         ],
-        // 'node_modules/prop-types/index.js': ['PropTypes'],
       },
     }),
   ],
