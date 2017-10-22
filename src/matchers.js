@@ -13,3 +13,12 @@ export const shallowMatch = (target, props) => {
 export const deepMatch = (target, props) => {
   return isEqual(target, pick(props, Object.keys(target)));
 };
+
+export const truthyMatcher = (target, props) => {
+  for (let key in target) {
+    if (target[key] !== !!props[key]) {
+      return false;
+    }
+  }
+  return true;
+};
