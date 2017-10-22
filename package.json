@@ -10,11 +10,15 @@
     "rendering",
     "components"
   ],
+  "engines": {
+    "yarn": "1.2.1"
+  },
   "scripts": {
     "build": "babel src -d lib --ignore __tests__",
     "commit": "giz cz",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged",
+    "prepare": "yarn build",
     "prettier": "prettier --write **/*.js",
     "test": "jest"
   },
