@@ -14,9 +14,6 @@
     "rendering",
     "components"
   ],
-  "engines": {
-    "yarn": "1.2.1"
-  },
   "scripts": {
     "build": "yarn clean && yarn build:cjs && yarn build:umd",
     "build:cjs": "babel src -d lib --ignore __tests__",
