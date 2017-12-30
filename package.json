@@ -1,7 +1,7 @@
 {
   "name": "react-ms",
   "description": "Generic Switch and Match components to assist you in all your conditional rendering needs.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
